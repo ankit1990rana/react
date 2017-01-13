@@ -1,12 +1,18 @@
 import React from 'react'; // Used to create and manage components
 import ReactDOM from 'react-dom'; // Used to intract with actual DOM
 
+import SearchBar from './components/search_bar';
+
 const API_KEY = "AIzaSyD1w_PbRJlmKU2_b-HoNuur5J3Cw5x-ZDE";
 
 
 // Create a new element
 const App = () => {
-  return <div>Hi!</div>;
+  return (
+   <div>
+    <SearchBar />
+  </div>
+  );
 }
 
 
