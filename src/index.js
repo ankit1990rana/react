@@ -1,18 +1,31 @@
-import React from 'react'; // Used to create and manage components
+import React, {Component} from 'react'; // Used to create and manage components
 import ReactDOM from 'react-dom'; // Used to intract with actual DOM
-
+import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 
 const API_KEY = "AIzaSyD1w_PbRJlmKU2_b-HoNuur5J3Cw5x-ZDE";
 
 
 // Create a new element
-const App = () => {
-  return (
-   <div>
-    <SearchBar />
-  </div>
-  );
+class App extends Component {
+
+  constructor(props) {
+        super(props);
+        YTSearch({key: API_KEY, term: 'react'}, (videos) => {
+              this.setState({ videos });
+          });
+        this.state = { videos: [] };
+      }
+
+  render(){
+    return (
+    <div>
+      <SearchBar />
+      <VideoList videos={this.state.videos}/>
+    </div>
+    );
+  }
 }
 
 
