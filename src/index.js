@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'; // Used to intract with actual DOM
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 const API_KEY = "AIzaSyD1w_PbRJlmKU2_b-HoNuur5J3Cw5x-ZDE";
 
@@ -12,16 +13,17 @@ class App extends Component {
 
   constructor(props) {
         super(props);
-        YTSearch({key: API_KEY, term: 'react'}, (videos) => {
+        YTSearch({key: API_KEY, term: 'far cry'}, (videos) => {
               this.setState({ videos });
           });
         this.state = { videos: [] };
       }
 
   render(){
-    return (
+    return (// Parent to child data transfer
     <div>
       <SearchBar />
+      <VideoDetail video={this.state.videos[0]} /> 
       <VideoList videos={this.state.videos}/>
     </div>
     );
